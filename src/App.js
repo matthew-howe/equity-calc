@@ -1,9 +1,9 @@
 import './App.css';
 import { useState } from 'react';
-import { raceRange, raceCombos, rates } from 'pec';
+import { raceRange, raceCombos, rates, raceCombosForBoard } from 'pec';
 
 function App() {
-  const [board, setBoard] = useState('');
+  const [board, setBoard] = useState('Ah9s8s');
   const [heroCard, setHeroCard] = useState('QhQs');
   const [villainCard, setVillainCard] = useState('JsJh');
 
@@ -13,14 +13,13 @@ function App() {
 
   const hero = [ heroCard[0] + heroCard[1], heroCard[2] + heroCard[3] ]; 
   const villain = [ villainCard[0] + villainCard[1], villainCard[2] + villainCard[3] ]; 
+  const boardf = [];
+  for (let i = 0; i < board.length; i+=2) {
+    boardf.push(board[i] + board[i+1])
+  }
 
-  const { win, loose, tie } = raceCombos(hero, villain, 1E4)
+  const { win, loose, tie } = raceCombosForBoard(hero, villain, 1E4, boardf)
   const { winRate, looseRate, tieRate } = rates({ win, loose, tie })
-
-  console.log('JJ performs as follows vs. [ KK, QQ ]')
-  console.log('win: %d%% (%d times)', winRate, win)
-  console.log('loose: %d%% (%d times)', looseRate, loose)
-  console.log('tie: %d%% (%d times)', tieRate, tie)
 
   return (
     <div className="App">
