@@ -1,3 +1,3 @@
 Poker Equity Calculator
 
-https://github.com/xyz123lmnop/pec
+https://github.com/matthew-howe/pec
